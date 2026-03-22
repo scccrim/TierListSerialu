@@ -8,4 +8,44 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="obj\Debug\net8.0-windows\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net8.0-windows\TierListSerialu.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net8.0-windows\TierListSerialu.GlobalUsings.g.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net8.0-windows\TierListSerialu.deps.json" />
+    <Content Include="bin\Debug\net8.0-windows\TierListSerialu.runtimeconfig.json" />
+    <Content Include="obj\Debug\net8.0-windows\TierListSerialu.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\net8.0-windows\TierListSerialu.designer.deps.json" />
+    <Content Include="obj\Debug\net8.0-windows\TierListSerialu.designer.runtimeconfig.json" />
+    <Content Include="obj\Debug\net8.0-windows\TierListSerialu.sourcelink.json" />
+    <Content Include="obj\project.assets.json" />
+    <Content Include="obj\TierListSerialu.csproj.nuget.dgspec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0-windows\TierListSerialu.dll" />
+    <None Include="bin\Debug\net8.0-windows\TierListSerialu.exe" />
+    <None Include="bin\Debug\net8.0-windows\TierListSerialu.pdb" />
+    <None Include="obj\Debug\net8.0-windows\apphost.exe" />
+    <None Include="obj\Debug\net8.0-windows\refint\TierListSerialu.dll" />
+    <None Include="obj\Debug\net8.0-windows\ref\TierListSerialu.dll" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.assets.cache" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.dll" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.FormStartujiciOkno.resources" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.FormTierList.resources" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net8.0-windows\TierListSerialu.pdb" />
+    <None Include="obj\project.nuget.cache" />
+    <None Include="obj\TierListSerialu.csproj.nuget.g.props" />
+    <None Include="obj\TierListSerialu.csproj.nuget.g.targets" />
+  </ItemGroup>
+
 </Project>
