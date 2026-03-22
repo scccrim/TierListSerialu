@@ -1,8 +1,8 @@
 namespace TierListSerialu
 {
-    public partial class Form1 : Form
+    public partial class FormStartujiciOkno : Form
     {
-        public Form1()
+        public FormStartujiciOkno()
         {
             InitializeComponent();
         }

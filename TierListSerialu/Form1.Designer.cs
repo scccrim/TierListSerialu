@@ -1,6 +1,6 @@
 ﻿namespace TierListSerialu
 {
-    partial class Form1
+    partial class FormStartujiciOkno
     {
         /// <summary>
         ///  Required designer variable.
@@ -40,14 +40,14 @@
             buttonTierList.Text = "Prokliknout se na tierlist";
             buttonTierList.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // FormStartujiciOkno
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(buttonTierList);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "FormStartujiciOkno";
+            Text = "Startujici okno";
             ResumeLayout(false);
         }
 
