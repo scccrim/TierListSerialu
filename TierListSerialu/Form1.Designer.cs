@@ -28,12 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            buttonTierList = new Button();
+            SuspendLayout();
+            // 
+            // buttonTierList
+            // 
+            buttonTierList.Location = new Point(321, 219);
+            buttonTierList.Name = "buttonTierList";
+            buttonTierList.Size = new Size(149, 23);
+            buttonTierList.TabIndex = 0;
+            buttonTierList.Text = "Prokliknout se na tierlist";
+            buttonTierList.UseVisualStyleBackColor = true;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonTierList);
+            Name = "Form1";
             Text = "Form1";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button buttonTierList;
     }
 }
