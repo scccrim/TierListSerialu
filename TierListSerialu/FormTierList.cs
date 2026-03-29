@@ -21,5 +21,21 @@ namespace TierListSerialu
         {
 
         }
+        private void formTierList_Load(object sender, EventArgs e)
+        {
+            string cesta = Path.Combine(Application.StartupPath, "images");
+
+            string[] soubory = Directory.GetFiles(cesta);
+            foreach (string soubor in soubory)
+            {
+                PictureBox pb = new PictureBox();
+                pb.Width = 150;
+                pb.Height = 200;
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+                pb.Image = Image.FromFile(soubor);
+
+                flowLayoutPanelSerialy.Controls.Add(pb);
+            }
+        }
     }
 }

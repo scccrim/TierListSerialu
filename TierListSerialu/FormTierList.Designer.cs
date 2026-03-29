@@ -35,18 +35,21 @@
             toolStripMenuItem3 = new ToolStripMenuItem();
             toolStripMenuItem4 = new ToolStripMenuItem();
             toolStripMenuItem5 = new ToolStripMenuItem();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flowLayoutPanelS = new FlowLayoutPanel();
             label1 = new Label();
             label2 = new Label();
-            flowLayoutPanel2 = new FlowLayoutPanel();
+            flowLayoutPanelA = new FlowLayoutPanel();
             label3 = new Label();
-            flowLayoutPanel3 = new FlowLayoutPanel();
+            flowLayoutPanelB = new FlowLayoutPanel();
             label4 = new Label();
-            flowLayoutPanel4 = new FlowLayoutPanel();
+            flowLayoutPanelC = new FlowLayoutPanel();
             label5 = new Label();
-            flowLayoutPanel5 = new FlowLayoutPanel();
-            flowLayoutPanel6 = new FlowLayoutPanel();
+            flowLayoutPanelD = new FlowLayoutPanel();
+            flowLayoutPanelSerialy = new FlowLayoutPanel();
+            pb = new PictureBox();
             menuStrip1.SuspendLayout();
+            flowLayoutPanelSerialy.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pb).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -95,12 +98,12 @@
             toolStripMenuItem5.Size = new Size(108, 22);
             toolStripMenuItem5.Text = "Světlý";
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanelS
             // 
-            flowLayoutPanel1.Location = new Point(104, 116);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1023, 126);
-            flowLayoutPanel1.TabIndex = 1;
+            flowLayoutPanelS.Location = new Point(104, 116);
+            flowLayoutPanelS.Name = "flowLayoutPanelS";
+            flowLayoutPanelS.Size = new Size(1023, 126);
+            flowLayoutPanelS.TabIndex = 1;
             // 
             // label1
             // 
@@ -124,12 +127,12 @@
             label2.TabIndex = 3;
             label2.Text = "A";
             // 
-            // flowLayoutPanel2
+            // flowLayoutPanelA
             // 
-            flowLayoutPanel2.Location = new Point(104, 248);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(1023, 126);
-            flowLayoutPanel2.TabIndex = 2;
+            flowLayoutPanelA.Location = new Point(104, 248);
+            flowLayoutPanelA.Name = "flowLayoutPanelA";
+            flowLayoutPanelA.Size = new Size(1023, 126);
+            flowLayoutPanelA.TabIndex = 2;
             // 
             // label3
             // 
@@ -141,12 +144,12 @@
             label3.TabIndex = 4;
             label3.Text = "B";
             // 
-            // flowLayoutPanel3
+            // flowLayoutPanelB
             // 
-            flowLayoutPanel3.Location = new Point(104, 380);
-            flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(1023, 126);
-            flowLayoutPanel3.TabIndex = 3;
+            flowLayoutPanelB.Location = new Point(104, 380);
+            flowLayoutPanelB.Name = "flowLayoutPanelB";
+            flowLayoutPanelB.Size = new Size(1023, 126);
+            flowLayoutPanelB.TabIndex = 3;
             // 
             // label4
             // 
@@ -158,12 +161,12 @@
             label4.TabIndex = 5;
             label4.Text = "C";
             // 
-            // flowLayoutPanel4
+            // flowLayoutPanelC
             // 
-            flowLayoutPanel4.Location = new Point(104, 512);
-            flowLayoutPanel4.Name = "flowLayoutPanel4";
-            flowLayoutPanel4.Size = new Size(1023, 126);
-            flowLayoutPanel4.TabIndex = 4;
+            flowLayoutPanelC.Location = new Point(104, 512);
+            flowLayoutPanelC.Name = "flowLayoutPanelC";
+            flowLayoutPanelC.Size = new Size(1023, 126);
+            flowLayoutPanelC.TabIndex = 4;
             // 
             // label5
             // 
@@ -175,19 +178,28 @@
             label5.TabIndex = 6;
             label5.Text = "D";
             // 
-            // flowLayoutPanel5
+            // flowLayoutPanelD
             // 
-            flowLayoutPanel5.Location = new Point(104, 645);
-            flowLayoutPanel5.Name = "flowLayoutPanel5";
-            flowLayoutPanel5.Size = new Size(1023, 126);
-            flowLayoutPanel5.TabIndex = 5;
+            flowLayoutPanelD.Location = new Point(104, 645);
+            flowLayoutPanelD.Name = "flowLayoutPanelD";
+            flowLayoutPanelD.Size = new Size(1023, 126);
+            flowLayoutPanelD.TabIndex = 5;
             // 
-            // flowLayoutPanel6
+            // flowLayoutPanelSerialy
             // 
-            flowLayoutPanel6.Location = new Point(12, 777);
-            flowLayoutPanel6.Name = "flowLayoutPanel6";
-            flowLayoutPanel6.Size = new Size(1489, 252);
-            flowLayoutPanel6.TabIndex = 6;
+            flowLayoutPanelSerialy.Controls.Add(pb);
+            flowLayoutPanelSerialy.Location = new Point(12, 777);
+            flowLayoutPanelSerialy.Name = "flowLayoutPanelSerialy";
+            flowLayoutPanelSerialy.Size = new Size(1489, 252);
+            flowLayoutPanelSerialy.TabIndex = 6;
+            // 
+            // pb
+            // 
+            pb.Location = new Point(3, 3);
+            pb.Name = "pb";
+            pb.Size = new Size(100, 50);
+            pb.TabIndex = 0;
+            pb.TabStop = false;
             // 
             // FormTierList
             // 
@@ -195,23 +207,26 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(1904, 1041);
-            Controls.Add(flowLayoutPanel6);
-            Controls.Add(flowLayoutPanel5);
+            Controls.Add(flowLayoutPanelSerialy);
+            Controls.Add(flowLayoutPanelD);
             Controls.Add(label5);
-            Controls.Add(flowLayoutPanel4);
+            Controls.Add(flowLayoutPanelC);
             Controls.Add(label4);
-            Controls.Add(flowLayoutPanel3);
+            Controls.Add(flowLayoutPanelB);
             Controls.Add(label3);
-            Controls.Add(flowLayoutPanel2);
+            Controls.Add(flowLayoutPanelA);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(flowLayoutPanelS);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "FormTierList";
             Text = "FormTierList";
+            Load += formTierList_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            flowLayoutPanelSerialy.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pb).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -225,16 +240,17 @@
         private ToolStripMenuItem toolStripMenuItem3;
         private ToolStripMenuItem toolStripMenuItem4;
         private ToolStripMenuItem toolStripMenuItem5;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanelS;
         private Label label1;
         private Label label2;
-        private FlowLayoutPanel flowLayoutPanel2;
+        private FlowLayoutPanel flowLayoutPanelA;
         private Label label3;
-        private FlowLayoutPanel flowLayoutPanel3;
+        private FlowLayoutPanel flowLayoutPanelB;
         private Label label4;
-        private FlowLayoutPanel flowLayoutPanel4;
+        private FlowLayoutPanel flowLayoutPanelC;
         private Label label5;
-        private FlowLayoutPanel flowLayoutPanel5;
-        private FlowLayoutPanel flowLayoutPanel6;
+        private FlowLayoutPanel flowLayoutPanelD;
+        private FlowLayoutPanel flowLayoutPanelSerialy;
+        private PictureBox pb;
     }
 }
