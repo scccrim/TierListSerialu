@@ -35,6 +35,8 @@
             toolStripMenuItemRezim = new ToolStripMenuItem();
             toolStripMenuItemTmavy = new ToolStripMenuItem();
             toolStripMenuItemSvetly = new ToolStripMenuItem();
+            resetovatTierlistToolStripMenuItem = new ToolStripMenuItem();
+            přidatSerialToolStripMenuItem = new ToolStripMenuItem();
             flowLayoutPanelS = new FlowLayoutPanel();
             labelS = new Label();
             labelA = new Label();
@@ -47,6 +49,7 @@
             flowLayoutPanelD = new FlowLayoutPanel();
             flowLayoutPanelSerialy = new FlowLayoutPanel();
             pb = new PictureBox();
+            nacistToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             flowLayoutPanelSerialy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb).BeginInit();
@@ -54,7 +57,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { itemUlozit, toolStripMenuItemAplikace, toolStripMenuItemNapoveda, toolStripMenuItemRezim });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { itemUlozit, toolStripMenuItemAplikace, toolStripMenuItemNapoveda, toolStripMenuItemRezim, resetovatTierlistToolStripMenuItem, přidatSerialToolStripMenuItem, nacistToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1904, 24);
@@ -66,18 +69,21 @@
             itemUlozit.Name = "itemUlozit";
             itemUlozit.Size = new Size(49, 20);
             itemUlozit.Text = "Uložit";
+            itemUlozit.Click += itemUlozit_Click;
             // 
             // toolStripMenuItemAplikace
             // 
             toolStripMenuItemAplikace.Name = "toolStripMenuItemAplikace";
             toolStripMenuItemAplikace.Size = new Size(71, 20);
             toolStripMenuItemAplikace.Text = "O aplikaci";
+            toolStripMenuItemAplikace.Click += toolStripMenuItemAplikace_Click;
             // 
             // toolStripMenuItemNapoveda
             // 
             toolStripMenuItemNapoveda.Name = "toolStripMenuItemNapoveda";
             toolStripMenuItemNapoveda.Size = new Size(73, 20);
             toolStripMenuItemNapoveda.Text = "Nápověda";
+            toolStripMenuItemNapoveda.Click += toolStripMenuItemNapoveda_Click;
             // 
             // toolStripMenuItemRezim
             // 
@@ -89,16 +95,30 @@
             // toolStripMenuItemTmavy
             // 
             toolStripMenuItemTmavy.Name = "toolStripMenuItemTmavy";
-            toolStripMenuItemTmavy.Size = new Size(180, 22);
+            toolStripMenuItemTmavy.Size = new Size(108, 22);
             toolStripMenuItemTmavy.Text = "Tmavý";
             toolStripMenuItemTmavy.Click += toolStripMenuItemTmavy_Click;
             // 
             // toolStripMenuItemSvetly
             // 
             toolStripMenuItemSvetly.Name = "toolStripMenuItemSvetly";
-            toolStripMenuItemSvetly.Size = new Size(180, 22);
+            toolStripMenuItemSvetly.Size = new Size(108, 22);
             toolStripMenuItemSvetly.Text = "Světlý";
             toolStripMenuItemSvetly.Click += toolStripMenuItemSvetly_Click;
+            // 
+            // resetovatTierlistToolStripMenuItem
+            // 
+            resetovatTierlistToolStripMenuItem.Name = "resetovatTierlistToolStripMenuItem";
+            resetovatTierlistToolStripMenuItem.Size = new Size(107, 20);
+            resetovatTierlistToolStripMenuItem.Text = "Resetovat Tierlist";
+            resetovatTierlistToolStripMenuItem.Click += resetovatTierlistToolStripMenuItem_Click;
+            // 
+            // přidatSerialToolStripMenuItem
+            // 
+            přidatSerialToolStripMenuItem.Name = "přidatSerialToolStripMenuItem";
+            přidatSerialToolStripMenuItem.Size = new Size(80, 20);
+            přidatSerialToolStripMenuItem.Text = "Přidat serial";
+            přidatSerialToolStripMenuItem.Click += přidatSerialToolStripMenuItem_Click;
             // 
             // flowLayoutPanelS
             // 
@@ -203,6 +223,13 @@
             pb.TabIndex = 0;
             pb.TabStop = false;
             // 
+            // nacistToolStripMenuItem
+            // 
+            nacistToolStripMenuItem.Name = "nacistToolStripMenuItem";
+            nacistToolStripMenuItem.Size = new Size(52, 20);
+            nacistToolStripMenuItem.Text = "Nacist";
+            nacistToolStripMenuItem.Click += nacistToolStripMenuItem_Click;
+            // 
             // FormTierList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -254,5 +281,8 @@
         private FlowLayoutPanel flowLayoutPanelD;
         private FlowLayoutPanel flowLayoutPanelSerialy;
         private PictureBox pb;
+        private ToolStripMenuItem resetovatTierlistToolStripMenuItem;
+        private ToolStripMenuItem přidatSerialToolStripMenuItem;
+        private ToolStripMenuItem nacistToolStripMenuItem;
     }
 }
