@@ -30,20 +30,20 @@
         {
             menuStrip1 = new MenuStrip();
             itemUlozit = new ToolStripMenuItem();
-            toolStripMenuItem1 = new ToolStripMenuItem();
-            toolStripMenuItem2 = new ToolStripMenuItem();
-            toolStripMenuItem3 = new ToolStripMenuItem();
-            toolStripMenuItem4 = new ToolStripMenuItem();
-            toolStripMenuItem5 = new ToolStripMenuItem();
+            toolStripMenuItemAplikace = new ToolStripMenuItem();
+            toolStripMenuItemNapoveda = new ToolStripMenuItem();
+            toolStripMenuItemRezim = new ToolStripMenuItem();
+            toolStripMenuItemTmavy = new ToolStripMenuItem();
+            toolStripMenuItemSvetly = new ToolStripMenuItem();
             flowLayoutPanelS = new FlowLayoutPanel();
-            label1 = new Label();
-            label2 = new Label();
+            labelS = new Label();
+            labelA = new Label();
             flowLayoutPanelA = new FlowLayoutPanel();
-            label3 = new Label();
+            labelB = new Label();
             flowLayoutPanelB = new FlowLayoutPanel();
-            label4 = new Label();
+            labelC = new Label();
             flowLayoutPanelC = new FlowLayoutPanel();
-            label5 = new Label();
+            labelD = new Label();
             flowLayoutPanelD = new FlowLayoutPanel();
             flowLayoutPanelSerialy = new FlowLayoutPanel();
             pb = new PictureBox();
@@ -54,7 +54,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { itemUlozit, toolStripMenuItem1, toolStripMenuItem2, toolStripMenuItem3 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { itemUlozit, toolStripMenuItemAplikace, toolStripMenuItemNapoveda, toolStripMenuItemRezim });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1904, 24);
@@ -67,36 +67,38 @@
             itemUlozit.Size = new Size(49, 20);
             itemUlozit.Text = "Uložit";
             // 
-            // toolStripMenuItem1
+            // toolStripMenuItemAplikace
             // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(71, 20);
-            toolStripMenuItem1.Text = "O aplikaci";
+            toolStripMenuItemAplikace.Name = "toolStripMenuItemAplikace";
+            toolStripMenuItemAplikace.Size = new Size(71, 20);
+            toolStripMenuItemAplikace.Text = "O aplikaci";
             // 
-            // toolStripMenuItem2
+            // toolStripMenuItemNapoveda
             // 
-            toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(73, 20);
-            toolStripMenuItem2.Text = "Nápověda";
+            toolStripMenuItemNapoveda.Name = "toolStripMenuItemNapoveda";
+            toolStripMenuItemNapoveda.Size = new Size(73, 20);
+            toolStripMenuItemNapoveda.Text = "Nápověda";
             // 
-            // toolStripMenuItem3
+            // toolStripMenuItemRezim
             // 
-            toolStripMenuItem3.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem4, toolStripMenuItem5 });
-            toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(51, 20);
-            toolStripMenuItem3.Text = "Režim";
+            toolStripMenuItemRezim.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemTmavy, toolStripMenuItemSvetly });
+            toolStripMenuItemRezim.Name = "toolStripMenuItemRezim";
+            toolStripMenuItemRezim.Size = new Size(51, 20);
+            toolStripMenuItemRezim.Text = "Režim";
             // 
-            // toolStripMenuItem4
+            // toolStripMenuItemTmavy
             // 
-            toolStripMenuItem4.Name = "toolStripMenuItem4";
-            toolStripMenuItem4.Size = new Size(108, 22);
-            toolStripMenuItem4.Text = "Tmavý";
+            toolStripMenuItemTmavy.Name = "toolStripMenuItemTmavy";
+            toolStripMenuItemTmavy.Size = new Size(180, 22);
+            toolStripMenuItemTmavy.Text = "Tmavý";
+            toolStripMenuItemTmavy.Click += toolStripMenuItemTmavy_Click;
             // 
-            // toolStripMenuItem5
+            // toolStripMenuItemSvetly
             // 
-            toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new Size(108, 22);
-            toolStripMenuItem5.Text = "Světlý";
+            toolStripMenuItemSvetly.Name = "toolStripMenuItemSvetly";
+            toolStripMenuItemSvetly.Size = new Size(180, 22);
+            toolStripMenuItemSvetly.Text = "Světlý";
+            toolStripMenuItemSvetly.Click += toolStripMenuItemSvetly_Click;
             // 
             // flowLayoutPanelS
             // 
@@ -105,27 +107,27 @@
             flowLayoutPanelS.Size = new Size(1023, 126);
             flowLayoutPanelS.TabIndex = 1;
             // 
-            // label1
+            // labelS
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
-            label1.ForeColor = Color.Lime;
-            label1.Location = new Point(14, 129);
-            label1.Name = "label1";
-            label1.Size = new Size(84, 100);
-            label1.TabIndex = 2;
-            label1.Text = "S";
-            label1.Click += label1_Click;
+            labelS.AutoSize = true;
+            labelS.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
+            labelS.ForeColor = Color.Lime;
+            labelS.Location = new Point(14, 129);
+            labelS.Name = "labelS";
+            labelS.Size = new Size(84, 100);
+            labelS.TabIndex = 2;
+            labelS.Text = "S";
+            labelS.Click += label1_Click;
             // 
-            // label2
+            // labelA
             // 
-            label2.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
-            label2.ForeColor = Color.Cyan;
-            label2.Location = new Point(12, 258);
-            label2.Name = "label2";
-            label2.Size = new Size(84, 100);
-            label2.TabIndex = 3;
-            label2.Text = "A";
+            labelA.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
+            labelA.ForeColor = Color.Cyan;
+            labelA.Location = new Point(12, 258);
+            labelA.Name = "labelA";
+            labelA.Size = new Size(84, 100);
+            labelA.TabIndex = 3;
+            labelA.Text = "A";
             // 
             // flowLayoutPanelA
             // 
@@ -134,15 +136,15 @@
             flowLayoutPanelA.Size = new Size(1023, 126);
             flowLayoutPanelA.TabIndex = 2;
             // 
-            // label3
+            // labelB
             // 
-            label3.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
-            label3.ForeColor = Color.Yellow;
-            label3.Location = new Point(14, 390);
-            label3.Name = "label3";
-            label3.Size = new Size(84, 100);
-            label3.TabIndex = 4;
-            label3.Text = "B";
+            labelB.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
+            labelB.ForeColor = Color.Yellow;
+            labelB.Location = new Point(14, 390);
+            labelB.Name = "labelB";
+            labelB.Size = new Size(84, 100);
+            labelB.TabIndex = 4;
+            labelB.Text = "B";
             // 
             // flowLayoutPanelB
             // 
@@ -151,15 +153,15 @@
             flowLayoutPanelB.Size = new Size(1023, 126);
             flowLayoutPanelB.TabIndex = 3;
             // 
-            // label4
+            // labelC
             // 
-            label4.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
-            label4.ForeColor = Color.DarkGoldenrod;
-            label4.Location = new Point(14, 528);
-            label4.Name = "label4";
-            label4.Size = new Size(84, 100);
-            label4.TabIndex = 5;
-            label4.Text = "C";
+            labelC.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
+            labelC.ForeColor = Color.DarkGoldenrod;
+            labelC.Location = new Point(14, 528);
+            labelC.Name = "labelC";
+            labelC.Size = new Size(84, 100);
+            labelC.TabIndex = 5;
+            labelC.Text = "C";
             // 
             // flowLayoutPanelC
             // 
@@ -168,15 +170,15 @@
             flowLayoutPanelC.Size = new Size(1023, 126);
             flowLayoutPanelC.TabIndex = 4;
             // 
-            // label5
+            // labelD
             // 
-            label5.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
-            label5.ForeColor = Color.Red;
-            label5.Location = new Point(14, 655);
-            label5.Name = "label5";
-            label5.Size = new Size(84, 100);
-            label5.TabIndex = 6;
-            label5.Text = "D";
+            labelD.Font = new Font("Segoe UI", 56F, FontStyle.Bold);
+            labelD.ForeColor = Color.Red;
+            labelD.Location = new Point(14, 655);
+            labelD.Name = "labelD";
+            labelD.Size = new Size(84, 100);
+            labelD.TabIndex = 6;
+            labelD.Text = "D";
             // 
             // flowLayoutPanelD
             // 
@@ -209,14 +211,14 @@
             ClientSize = new Size(1904, 1041);
             Controls.Add(flowLayoutPanelSerialy);
             Controls.Add(flowLayoutPanelD);
-            Controls.Add(label5);
+            Controls.Add(labelD);
             Controls.Add(flowLayoutPanelC);
-            Controls.Add(label4);
+            Controls.Add(labelC);
             Controls.Add(flowLayoutPanelB);
-            Controls.Add(label3);
+            Controls.Add(labelB);
             Controls.Add(flowLayoutPanelA);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(labelA);
+            Controls.Add(labelS);
             Controls.Add(flowLayoutPanelS);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -235,20 +237,20 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem itemUlozit;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem3;
-        private ToolStripMenuItem toolStripMenuItem4;
-        private ToolStripMenuItem toolStripMenuItem5;
+        private ToolStripMenuItem toolStripMenuItemAplikace;
+        private ToolStripMenuItem toolStripMenuItemNapoveda;
+        private ToolStripMenuItem toolStripMenuItemRezim;
+        private ToolStripMenuItem toolStripMenuItemTmavy;
+        private ToolStripMenuItem toolStripMenuItemSvetly;
         private FlowLayoutPanel flowLayoutPanelS;
-        private Label label1;
-        private Label label2;
+        private Label labelS;
+        private Label labelA;
         private FlowLayoutPanel flowLayoutPanelA;
-        private Label label3;
+        private Label labelB;
         private FlowLayoutPanel flowLayoutPanelB;
-        private Label label4;
+        private Label labelC;
         private FlowLayoutPanel flowLayoutPanelC;
-        private Label label5;
+        private Label labelD;
         private FlowLayoutPanel flowLayoutPanelD;
         private FlowLayoutPanel flowLayoutPanelSerialy;
         private PictureBox pb;

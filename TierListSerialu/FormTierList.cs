@@ -83,5 +83,125 @@ namespace TierListSerialu
             }
         }
 
+        private void NastavBarvyRekurzivne(Control c, Color backColor, Color foreColor)
+        {
+            if (c == labelS)
+            {
+                c.BackColor = Color.White;
+                c.ForeColor = Color.Lime;
+                return;
+            }
+            if (c == labelA)
+            {
+                c.BackColor = Color.White;
+                c.ForeColor = Color.Cyan;
+                return;
+            }
+            if (c == labelB)
+            {
+                c.BackColor = Color.White;
+                c.ForeColor = Color.Yellow;
+                return;
+            }
+            if (c == labelC)
+            {
+                c.BackColor = Color.White;
+                c.ForeColor = Color.DarkGoldenrod;
+                return;
+            }
+            if (c == labelD)
+            {
+                c.BackColor = Color.White;
+                c.ForeColor = Color.Red;
+                return;
+            }
+
+            c.BackColor = backColor;
+            c.ForeColor = foreColor;
+
+            foreach (Control child in c.Controls)
+            {
+                NastavBarvyRekurzivne(child, backColor, foreColor);
+            }
+        }
+        private void NastavDarkRekurzivne(Control c)
+        {
+            if (c == labelS)
+            {
+                c.ForeColor = Color.Lime;
+                c.BackColor = Color.Black;
+                return;
+            }
+            if (c == labelA)
+            {
+                c.ForeColor = Color.Cyan;
+                c.BackColor = Color.Black;
+                return;
+            }
+            if (c == labelB)
+            {
+                c.ForeColor = Color.Yellow;
+                c.BackColor = Color.Black;
+                return;
+            }
+            if (c == labelC)
+            {
+                c.ForeColor = Color.DarkGoldenrod;
+                c.BackColor = Color.Black;
+                return;
+            }
+            if (c == labelD)
+            {
+                c.ForeColor = Color.Red;
+                c.BackColor = Color.Black;
+                return;
+            }
+
+            if (c is FlowLayoutPanel)
+            {
+                c.BackColor = Color.Black;
+            }
+            else
+            {
+                c.BackColor = Color.Black;
+                c.ForeColor = Color.White;
+            }
+
+            foreach (Control child in c.Controls)
+            {
+                NastavDarkRekurzivne(child);
+            }
+        }
+        private void NastavTema(Color backColor, Color foreColor)
+        {
+            this.BackColor = backColor;
+
+            foreach (Control c in this.Controls)
+            {
+                NastavBarvyRekurzivne(c, backColor, foreColor);
+            }
+        }
+        private void NastavDarkTema()
+        {
+            this.BackColor = Color.Black;
+
+            foreach (Control c in this.Controls)
+            {
+                NastavDarkRekurzivne(c);
+            }
+
+            menuStrip1.BackColor = Color.White;
+            menuStrip1.ForeColor = Color.Black;
+        }
+
+        private void toolStripMenuItemTmavy_Click(object sender, EventArgs e)
+        {
+            NastavDarkTema();
+        }
+
+        private void toolStripMenuItemSvetly_Click(object sender, EventArgs e)
+        {
+            NastavTema(SystemColors.Control, Color.Black);
+        }
     }
 }
