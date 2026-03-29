@@ -39,6 +39,7 @@
             buttonTierList.TabIndex = 0;
             buttonTierList.Text = "Prokliknout se na tierlist";
             buttonTierList.UseVisualStyleBackColor = true;
+            buttonTierList.Click += buttonTierList_Click;
             // 
             // FormStartujiciOkno
             // 

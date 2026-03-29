@@ -6,5 +6,12 @@ namespace TierListSerialu
         {
             InitializeComponent();
         }
+
+        private void buttonTierList_Click(object sender, EventArgs e)
+        {
+            FormTierList f2 = new FormTierList();
+            f2.Show();
+            this.Hide();
+        }
     }
 }
