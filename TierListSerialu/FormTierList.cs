@@ -14,6 +14,7 @@ namespace TierListSerialu
 {
     public partial class FormTierList : Form
     {
+
         public FormTierList()
         {
             InitializeComponent();
@@ -30,6 +31,8 @@ namespace TierListSerialu
         }
         private void formTierList_Load(object sender, EventArgs e)
         {
+            this.KeyPreview = true;
+
             flowLayoutPanelS.AllowDrop = true;
             flowLayoutPanelA.AllowDrop = true;
             flowLayoutPanelB.AllowDrop = true;
@@ -53,6 +56,7 @@ namespace TierListSerialu
             flowLayoutPanelD.DragEnter += Panel_DragEnter;
             flowLayoutPanelD.DragDrop += Panel_DragDrop;
             string cesta = Path.Combine(Application.StartupPath, "images");
+            this.KeyDown += FormTierList_KeyDown;
 
             string[] soubory = Directory.GetFiles(cesta);
             foreach (string soubor in soubory)
@@ -63,7 +67,7 @@ namespace TierListSerialu
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 pb.MouseDown += Pb_MouseDown;
                 pb.Image = Image.FromFile(soubor);
-                pb.Tag = soubor; 
+                pb.Tag = soubor;
 
                 flowLayoutPanelSerialy.Controls.Add(pb);
             }
@@ -313,7 +317,7 @@ namespace TierListSerialu
         }
         private void UlozitTierListJSON()
         {
-            
+
             string slozka = Path.Combine(Application.StartupPath, "tierlist");
 
             if (!Directory.Exists(slozka))
@@ -413,6 +417,30 @@ namespace TierListSerialu
         {
             UlozitTierListJSON();
             base.OnFormClosing(e);
+        }
+
+        private void FormTierList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control)
+            {
+                if (e.KeyCode == Keys.S)
+                    UlozitTierListJSON();
+
+                if (e.KeyCode == Keys.O)
+                    NacistTierListJSON();
+
+                if (e.KeyCode == Keys.R)
+                    ResetTierList();
+
+                if (e.KeyCode == Keys.N)
+                    PridatSerial();
+
+                if (e.KeyCode == Keys.D)
+                    NastavDarkTema();
+
+                if (e.KeyCode == Keys.L)
+                    NastavTema(SystemColors.Control, Color.Black);
+            }
         }
     }
 

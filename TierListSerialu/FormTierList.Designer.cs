@@ -37,6 +37,7 @@
             toolStripMenuItemSvetly = new ToolStripMenuItem();
             resetovatTierlistToolStripMenuItem = new ToolStripMenuItem();
             přidatSerialToolStripMenuItem = new ToolStripMenuItem();
+            nacistToolStripMenuItem = new ToolStripMenuItem();
             flowLayoutPanelS = new FlowLayoutPanel();
             labelS = new Label();
             labelA = new Label();
@@ -49,7 +50,6 @@
             flowLayoutPanelD = new FlowLayoutPanel();
             flowLayoutPanelSerialy = new FlowLayoutPanel();
             pb = new PictureBox();
-            nacistToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             flowLayoutPanelSerialy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb).BeginInit();
@@ -119,6 +119,13 @@
             přidatSerialToolStripMenuItem.Size = new Size(80, 20);
             přidatSerialToolStripMenuItem.Text = "Přidat serial";
             přidatSerialToolStripMenuItem.Click += přidatSerialToolStripMenuItem_Click;
+            // 
+            // nacistToolStripMenuItem
+            // 
+            nacistToolStripMenuItem.Name = "nacistToolStripMenuItem";
+            nacistToolStripMenuItem.Size = new Size(52, 20);
+            nacistToolStripMenuItem.Text = "Nacist";
+            nacistToolStripMenuItem.Click += nacistToolStripMenuItem_Click;
             // 
             // flowLayoutPanelS
             // 
@@ -223,13 +230,6 @@
             pb.TabIndex = 0;
             pb.TabStop = false;
             // 
-            // nacistToolStripMenuItem
-            // 
-            nacistToolStripMenuItem.Name = "nacistToolStripMenuItem";
-            nacistToolStripMenuItem.Size = new Size(52, 20);
-            nacistToolStripMenuItem.Text = "Nacist";
-            nacistToolStripMenuItem.Click += nacistToolStripMenuItem_Click;
-            // 
             // FormTierList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -252,6 +252,7 @@
             Name = "FormTierList";
             Text = "FormTierList";
             Load += formTierList_Load;
+            KeyDown += FormTierList_KeyDown;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             flowLayoutPanelSerialy.ResumeLayout(false);
