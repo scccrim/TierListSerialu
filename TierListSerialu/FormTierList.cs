@@ -55,21 +55,40 @@ namespace TierListSerialu
 
             flowLayoutPanelD.DragEnter += Panel_DragEnter;
             flowLayoutPanelD.DragDrop += Panel_DragDrop;
-            string cesta = Path.Combine(Application.StartupPath, "images");
             this.KeyDown += FormTierList_KeyDown;
+            string cesta = Path.Combine(Application.StartupPath, "images");
 
-            string[] soubory = Directory.GetFiles(cesta);
-            foreach (string soubor in soubory)
+            if (!Directory.Exists(cesta))
             {
-                PictureBox pb = new PictureBox();
-                pb.Width = 150;
-                pb.Height = 126;
-                pb.SizeMode = PictureBoxSizeMode.Zoom;
-                pb.MouseDown += Pb_MouseDown;
-                pb.Image = Image.FromFile(soubor);
-                pb.Tag = soubor;
+                MessageBox.Show("Složka 'images' nebyla nalezena!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                flowLayoutPanelSerialy.Controls.Add(pb);
+            try
+            {
+                string[] soubory = Directory.GetFiles(cesta);
+
+                foreach (string soubor in soubory)
+                {
+                    // validace formátu
+                    if (!(soubor.EndsWith(".jpg") || soubor.EndsWith(".png") || soubor.EndsWith(".jfif")))
+                        continue;
+
+                    PictureBox pb = new PictureBox();
+                    pb.Width = 150;
+                    pb.Height = 126;
+                    pb.SizeMode = PictureBoxSizeMode.Zoom;
+                    pb.MouseDown += Pb_MouseDown;
+
+                    pb.Image = Image.FromFile(soubor);
+                    pb.Tag = soubor;
+
+                    flowLayoutPanelSerialy.Controls.Add(pb);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Chyba při načítání obrázků:\n" + ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void Pb_MouseDown(object sender, MouseEventArgs e)
@@ -277,38 +296,60 @@ namespace TierListSerialu
         private void PridatSerial()
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Obrázky (*.jpg;*.png*.jfif)|*.jpg;*.png;*.jfif";
+            ofd.Filter = "Obrázky (*.jpg;*.png;*.jfif)|*.jpg;*.png;*.jfif";
 
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() != DialogResult.OK) return;
+
+            // validace souboru
+            if (!File.Exists(ofd.FileName))
             {
-                string cilovaSlozka = Path.Combine(Application.StartupPath, "Images");
+                MessageBox.Show("Vybraný soubor neexistuje!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (!Directory.Exists(cilovaSlozka))
-                {
-                    Directory.CreateDirectory(cilovaSlozka);
-                }
 
-                string nazevSouboru = Path.GetFileName(ofd.FileName);
-                string cilovaCesta = Path.Combine(cilovaSlozka, nazevSouboru);
+            string cilovaSlozka = Path.Combine(Application.StartupPath, "Images");
+            string cilovaCesta = Path.Combine(cilovaSlozka, Path.GetFileName(ofd.FileName));
+            // ❗ kontrola duplicity názvu souboru
+            if (File.Exists(cilovaCesta))
+            {
+                MessageBox.Show(
+                    "Snaha o přidání serialu se stejným názvem obrazku jako jiny serial",
+                    "Chyba",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
 
-                try
-                {
-                    File.Copy(ofd.FileName, cilovaCesta, true);
+                return;
+            }
 
-                    PictureBox pb = new PictureBox();
-                    pb.Width = 150;
-                    pb.Height = 126;
-                    pb.SizeMode = PictureBoxSizeMode.Zoom;
-                    pb.Image = Image.FromFile(cilovaCesta);
-                    pb.MouseDown += Pb_MouseDown;
-                    pb.Tag = cilovaCesta;
+            try
+            {
+                File.Copy(ofd.FileName, cilovaCesta);
 
-                    flowLayoutPanelSerialy.Controls.Add(pb);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Chyba: " + ex.Message);
-                }
+                PictureBox pb = new PictureBox();
+                pb.Width = 150;
+                pb.Height = 126;
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+                pb.Image = Image.FromFile(cilovaCesta);
+                pb.MouseDown += Pb_MouseDown;
+                pb.Tag = cilovaCesta;
+
+                flowLayoutPanelSerialy.Controls.Add(pb);
+            }
+            catch (IOException)
+            {
+                MessageBox.Show(
+                    "Snaha o přidání serialu se stejným názvem obrazku jako jiny serial",
+                    "Chyba",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Neočekávaná chyba:\n" + ex.Message,
+                    "Chyba",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
         private void přidatSerialToolStripMenuItem_Click(object sender, EventArgs e)
@@ -317,24 +358,36 @@ namespace TierListSerialu
         }
         private void UlozitTierListJSON()
         {
+            bool jeNecoZarazeno =
+    flowLayoutPanelS.Controls.Count > 0 ||
+    flowLayoutPanelA.Controls.Count > 0 ||
+    flowLayoutPanelB.Controls.Count > 0 ||
+    flowLayoutPanelC.Controls.Count > 0 ||
+    flowLayoutPanelD.Controls.Count > 0;
 
-            string slozka = Path.Combine(Application.StartupPath, "tierlist");
-
-            if (!Directory.Exists(slozka))
+            if (!jeNecoZarazeno)
             {
-                Directory.CreateDirectory(slozka);
+                MessageBox.Show("Nejdříve zařaď alespoň jeden seriál, potom můžeš uložit!",
+                    "Upozornění", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-
-            string cesta = Path.Combine(slozka, "tierlist.json");
-
-            List<SerialItem> data = new List<SerialItem>();
-
-            void UlozPanel(FlowLayoutPanel panel, string tier)
+            try
             {
-                foreach (PictureBox pb in panel.Controls)
+                string slozka = Path.Combine(Application.StartupPath, "tierlist");
+
+                if (!Directory.Exists(slozka))
+                    Directory.CreateDirectory(slozka);
+
+                string cesta = Path.Combine(slozka, "tierlist.json");
+
+                List<SerialItem> data = new List<SerialItem>();
+
+                void UlozPanel(FlowLayoutPanel panel, string tier)
                 {
-                    if (pb.Tag != null)
+                    foreach (PictureBox pb in panel.Controls)
                     {
+                        if (pb.Tag == null) continue;
+
                         data.Add(new SerialItem
                         {
                             Tier = tier,
@@ -342,23 +395,23 @@ namespace TierListSerialu
                         });
                     }
                 }
+
+                UlozPanel(flowLayoutPanelS, "S");
+                UlozPanel(flowLayoutPanelA, "A");
+                UlozPanel(flowLayoutPanelB, "B");
+                UlozPanel(flowLayoutPanelC, "C");
+                UlozPanel(flowLayoutPanelD, "D");
+
+                string json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
+
+                File.WriteAllText(cesta, json);
+
+                MessageBox.Show("Tier list byl úspěšně uložen.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            UlozPanel(flowLayoutPanelS, "S");
-            UlozPanel(flowLayoutPanelA, "A");
-            UlozPanel(flowLayoutPanelB, "B");
-            UlozPanel(flowLayoutPanelC, "C");
-            UlozPanel(flowLayoutPanelD, "D");
-            UlozPanel(flowLayoutPanelSerialy, "X");
-
-            string json = JsonSerializer.Serialize(data, new JsonSerializerOptions
+            catch (Exception ex)
             {
-                WriteIndented = true
-            });
-
-            File.WriteAllText(cesta, json);
-
-            MessageBox.Show("Tier list uložen do JSON!");
+                MessageBox.Show("Chyba při ukládání:\n" + ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void itemUlozit_Click(object sender, EventArgs e)
@@ -367,45 +420,82 @@ namespace TierListSerialu
         }
         private void NacistTierListJSON()
         {
-            string cesta = Path.Combine(Application.StartupPath, "tierlist", "tierlist.json");
-
-            if (!File.Exists(cesta))
+            try
             {
-                MessageBox.Show("Soubor neexistuje!");
-                return;
-            }
+                string cesta = Path.Combine(Application.StartupPath, "tierlist", "tierlist.json");
 
-            string json = File.ReadAllText(cesta);
-
-            List<SerialItem> data = JsonSerializer.Deserialize<List<SerialItem>>(json);
-
-            ResetTierList();
-
-            foreach (var item in data)
-            {
-                if (!File.Exists(item.ImagePath)) continue;
-
-                PictureBox pb = new PictureBox();
-                pb.Width = 150;
-                pb.Height = 126;
-                pb.SizeMode = PictureBoxSizeMode.Zoom;
-                pb.Image = Image.FromFile(item.ImagePath);
-                pb.Tag = item.ImagePath;
-                pb.MouseDown += Pb_MouseDown;
-
-                FlowLayoutPanel cil;
-
-                switch (item.Tier)
+                if (!File.Exists(cesta))
                 {
-                    case "S": cil = flowLayoutPanelS; break;
-                    case "A": cil = flowLayoutPanelA; break;
-                    case "B": cil = flowLayoutPanelB; break;
-                    case "C": cil = flowLayoutPanelC; break;
-                    case "D": cil = flowLayoutPanelD; break;
-                    default: cil = flowLayoutPanelSerialy; break;
+                    MessageBox.Show("Soubor tierlist.json nebyl nalezen!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
-                cil.Controls.Add(pb);
+                string json = File.ReadAllText(cesta);
+
+                var data = JsonSerializer.Deserialize<List<SerialItem>>(json);
+
+                if (data == null)
+                {
+                    MessageBox.Show("Soubor je prázdný nebo poškozený!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                flowLayoutPanelS.Controls.Clear();
+                flowLayoutPanelA.Controls.Clear();
+                flowLayoutPanelB.Controls.Clear();
+                flowLayoutPanelC.Controls.Clear();
+                flowLayoutPanelD.Controls.Clear();
+
+                foreach (PictureBox pb in flowLayoutPanelSerialy.Controls.Cast<PictureBox>().ToList())
+                {
+                    if (pb.Tag != null && data.Any(d => d.ImagePath == pb.Tag.ToString()))
+                    {
+                        flowLayoutPanelSerialy.Controls.Remove(pb);
+                    }
+                }
+
+                foreach (var item in data)
+                {
+                    if (flowLayoutPanelS.Controls.Cast<PictureBox>().Any(p => p.Tag.ToString() == item.ImagePath) ||
+    flowLayoutPanelA.Controls.Cast<PictureBox>().Any(p => p.Tag.ToString() == item.ImagePath) ||
+    flowLayoutPanelB.Controls.Cast<PictureBox>().Any(p => p.Tag.ToString() == item.ImagePath) ||
+    flowLayoutPanelC.Controls.Cast<PictureBox>().Any(p => p.Tag.ToString() == item.ImagePath) ||
+    flowLayoutPanelD.Controls.Cast<PictureBox>().Any(p => p.Tag.ToString() == item.ImagePath))
+                    {
+                        continue;
+                    }
+                    if (!File.Exists(item.ImagePath)) continue;
+
+                    PictureBox pb = new PictureBox();
+                    pb.Width = 150;
+                    pb.Height = 126;
+                    pb.SizeMode = PictureBoxSizeMode.Zoom;
+                    pb.Image = Image.FromFile(item.ImagePath);
+                    pb.Tag = item.ImagePath;
+                    pb.MouseDown += Pb_MouseDown;
+
+                    FlowLayoutPanel cil = item.Tier switch
+                    {
+                        "S" => flowLayoutPanelS,
+                        "A" => flowLayoutPanelA,
+                        "B" => flowLayoutPanelB,
+                        "C" => flowLayoutPanelC,
+                        "D" => flowLayoutPanelD,
+                        _ => null
+                    };
+
+                    if (cil != null)
+                    {
+                        cil.Controls.Add(pb);
+                    }
+                }
+            }
+            catch (JsonException)
+            {
+                MessageBox.Show("Soubor JSON je poškozený!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Chyba při načítání:\n" + ex.Message, "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
